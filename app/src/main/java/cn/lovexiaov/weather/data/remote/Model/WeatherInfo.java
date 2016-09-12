@@ -23,6 +23,21 @@ public class WeatherInfo {
    * suggestion : {"comf":{"brf":"较舒适","txt":"白天天气晴好，您在这种天气条件下，会感觉早晚凉爽、舒适，午后偏热。"},"cw":{"brf":"较适宜","txt":"较适宜洗车，未来一天无雨，风力较小，擦洗一新的汽车至少能保持一天。"},"drsg":{"brf":"热","txt":"天气热，建议着短裙、短裤、短薄外套、T恤等夏季服装。"},"flu":{"brf":"少发","txt":"各项气象条件适宜，无明显降温过程，发生感冒机率较低。"},"sport":{"brf":"较适宜","txt":"天气较好，户外运动请注意防晒。推荐您进行室内运动。"},"trav":{"brf":"适宜","txt":"天气较好，但丝毫不会影响您出行的心情。温度适宜又有微风相伴，适宜旅游。"},"uv":{"brf":"弱","txt":"紫外线强度较弱，建议出门前涂擦SPF在12-15之间、PA+的防晒护肤品。"}}
    */
   @SerializedName("HeWeather data service 3.0") public List<DataBean> data;
+  /**
+   * level : 橙色
+   * stat : 预警中
+   * title : 辽宁省大连市气象台发布高温橙色预警
+   * txt : 大连市气象台2015年07月14日13时31分发布高温橙色预警信号:预计14日下午至傍晚，旅顺口区局部最高气温将达到37℃以上,请注意防范。
+   * type : 高温
+   */
+
+  @SerializedName("alarms") public List<AlarmsBean> alarms;
+
+  @Override public String toString() {
+    return "WeatherInfo{" +
+        "data=" + data +
+        '}';
+  }
 
   public static class DataBean {
     /**
@@ -38,15 +53,17 @@ public class WeatherInfo {
      * update : {"loc":"2016-09-12 10:53","utc":"2016-09-12 02:53"}
      */
     @SerializedName("basic") public BasicBean basic;
+
+    @SerializedName("alarms") public AlarmsBean alarms;
     /**
-     * cond : {"code":"101","txt":"多云"}
-     * fl : 26
-     * hum : 60
-     * pcpn : 0
-     * pres : 1018
-     * tmp : 23
-     * vis : 10
-     * wind : {"deg":"340","dir":"北风","sc":"4-5","spd":"17"}
+     * cond : {"code":"101","txt":"多云"} // 天气状况
+     * fl : 26 // 体感温度
+     * hum : 60 // 湿度
+     * pcpn : 0 // 降雨量
+     * pres : 1018 // 气压
+     * tmp : 23 // 温度
+     * vis : 10 // 可见度
+     * wind : {"deg":"340","dir":"北风","sc":"4-5","spd":"17"} // 风力状况
      */
     @SerializedName("now") public NowBean now;
     @SerializedName("status") public String status;
@@ -84,6 +101,18 @@ public class WeatherInfo {
 
     @SerializedName("hourly_forecast") public List<HourlyForecastBean> hourlyForecast;
 
+    @Override public String toString() {
+      return "DataBean{" +
+          "aqi=" + aqi +
+          ", basic=" + basic +
+          ", alarms=" + alarms +
+          ", now=" + now +
+          ", status='" + status + '\'' +
+          ", suggestion=" + suggestion +
+          ", dailyForecast=" + dailyForecast +
+          ", hourlyForecast=" + hourlyForecast +
+          '}';
+    }
   }
 
   public static class AqiBean {
@@ -99,6 +128,12 @@ public class WeatherInfo {
      */
 
     @SerializedName("city") public CityBean city;
+
+    @Override public String toString() {
+      return "AqiBean{" +
+          "city=" + city +
+          '}';
+    }
   }
 
   public static class CityBean {
@@ -110,6 +145,19 @@ public class WeatherInfo {
     @SerializedName("pm25") public String pm25;
     @SerializedName("qlty") public String qlty;
     @SerializedName("so2") public String so2;
+
+    @Override public String toString() {
+      return "CityBean{" +
+          "aqi='" + aqi + '\'' +
+          ", co='" + co + '\'' +
+          ", no2='" + no2 + '\'' +
+          ", o3='" + o3 + '\'' +
+          ", pm10='" + pm10 + '\'' +
+          ", pm25='" + pm25 + '\'' +
+          ", qlty='" + qlty + '\'' +
+          ", so2='" + so2 + '\'' +
+          '}';
+    }
   }
 
   public static class BasicBean {
@@ -124,11 +172,29 @@ public class WeatherInfo {
      */
 
     @SerializedName("update") public UpdateBean update;
+
+    @Override public String toString() {
+      return "BasicBean{" +
+          "city='" + city + '\'' +
+          ", cnty='" + cnty + '\'' +
+          ", id='" + id + '\'' +
+          ", lat='" + lat + '\'' +
+          ", lon='" + lon + '\'' +
+          ", update=" + update +
+          '}';
+    }
   }
 
   public static class UpdateBean {
     @SerializedName("loc") public String loc;
     @SerializedName("utc") public String utc;
+
+    @Override public String toString() {
+      return "UpdateBean{" +
+          "loc='" + loc + '\'' +
+          ", utc='" + utc + '\'' +
+          '}';
+    }
   }
 
   public static class NowBean {
@@ -152,11 +218,31 @@ public class WeatherInfo {
      */
 
     @SerializedName("wind") public WindBean wind;
+
+    @Override public String toString() {
+      return "NowBean{" +
+          "cond=" + cond +
+          ", fl='" + fl + '\'' +
+          ", hum='" + hum + '\'' +
+          ", pcpn='" + pcpn + '\'' +
+          ", pres='" + pres + '\'' +
+          ", tmp='" + tmp + '\'' +
+          ", vis='" + vis + '\'' +
+          ", wind=" + wind +
+          '}';
+    }
   }
 
   public static class CondBean {
     @SerializedName("code") public String code;
     @SerializedName("txt") public String txt;
+
+    @Override public String toString() {
+      return "CondBean{" +
+          "code='" + code + '\'' +
+          ", txt='" + txt + '\'' +
+          '}';
+    }
   }
 
   public static class WindBean {
@@ -164,6 +250,15 @@ public class WeatherInfo {
     @SerializedName("dir") public String dir;
     @SerializedName("sc") public String sc;
     @SerializedName("spd") public String spd;
+
+    @Override public String toString() {
+      return "WindBean{" +
+          "deg='" + deg + '\'' +
+          ", dir='" + dir + '\'' +
+          ", sc='" + sc + '\'' +
+          ", spd='" + spd + '\'' +
+          '}';
+    }
   }
 
   public static class SuggestionBean {
@@ -209,11 +304,30 @@ public class WeatherInfo {
      */
 
     @SerializedName("uv") public SuggestionIndexBean uv;
+
+    @Override public String toString() {
+      return "SuggestionBean{" +
+          "comf=" + comf +
+          ", cw=" + cw +
+          ", drsg=" + drsg +
+          ", flu=" + flu +
+          ", sport=" + sport +
+          ", trav=" + trav +
+          ", uv=" + uv +
+          '}';
+    }
   }
 
   public static class SuggestionIndexBean {
     @SerializedName("brf") public String brf;
     @SerializedName("txt") public String txt;
+
+    @Override public String toString() {
+      return "SuggestionIndexBean{" +
+          "brf='" + brf + '\'' +
+          ", txt='" + txt + '\'' +
+          '}';
+    }
   }
 
   public static class DailyForecastBean {
@@ -251,11 +365,33 @@ public class WeatherInfo {
      */
 
     @SerializedName("wind") public WindBean wind;
+
+    @Override public String toString() {
+      return "DailyForecastBean{" +
+          "astro=" + astro +
+          ", cond=" + cond +
+          ", date='" + date + '\'' +
+          ", hum='" + hum + '\'' +
+          ", pcpn='" + pcpn + '\'' +
+          ", pop='" + pop + '\'' +
+          ", pres='" + pres + '\'' +
+          ", tmp=" + tmp +
+          ", vis='" + vis + '\'' +
+          ", wind=" + wind +
+          '}';
+    }
   }
 
   public static class AstroBean {
     @SerializedName("sr") public String sr;
     @SerializedName("ss") public String ss;
+
+    @Override public String toString() {
+      return "AstroBean{" +
+          "sr='" + sr + '\'' +
+          ", ss='" + ss + '\'' +
+          '}';
+    }
   }
 
   public static class DailyCondBean {
@@ -263,11 +399,27 @@ public class WeatherInfo {
     @SerializedName("code_n") public String codeN;
     @SerializedName("txt_d") public String txtD;
     @SerializedName("txt_n") public String txtN;
+
+    @Override public String toString() {
+      return "DailyCondBean{" +
+          "codeD='" + codeD + '\'' +
+          ", codeN='" + codeN + '\'' +
+          ", txtD='" + txtD + '\'' +
+          ", txtN='" + txtN + '\'' +
+          '}';
+    }
   }
 
   public static class TmpBean {
     @SerializedName("max") public String max;
     @SerializedName("min") public String min;
+
+    @Override public String toString() {
+      return "TmpBean{" +
+          "max='" + max + '\'' +
+          ", min='" + min + '\'' +
+          '}';
+    }
   }
 
   public static class HourlyForecastBean {
@@ -276,19 +428,43 @@ public class WeatherInfo {
     @SerializedName("pop") public String pop;
     @SerializedName("pres") public String pres;
     @SerializedName("tmp") public String tmp;
+
     /**
      * deg : 185
      * dir : 南风
      * sc : 微风
      * spd : 10
      */
-
     @SerializedName("wind") public WindBean wind;
+
+    @Override public String toString() {
+      return "HourlyForecastBean{" +
+          "date='" + date + '\'' +
+          ", hum='" + hum + '\'' +
+          ", pop='" + pop + '\'' +
+          ", pres='" + pres + '\'' +
+          ", tmp='" + tmp + '\'' +
+          ", wind=" + wind +
+          '}';
+    }
   }
 
-  @Override public String toString() {
-    return "WeatherInfo{" +
-        "data=" + data +
-        '}';
+  public static class AlarmsBean {
+
+    @SerializedName("level") public String level;
+    @SerializedName("stat") public String stat;
+    @SerializedName("title") public String title;
+    @SerializedName("txt") public String txt;
+    @SerializedName("type") public String type;
+
+    @Override public String toString() {
+      return "AlarmsBean{" +
+          "level='" + level + '\'' +
+          ", stat='" + stat + '\'' +
+          ", title='" + title + '\'' +
+          ", txt='" + txt + '\'' +
+          ", type='" + type + '\'' +
+          '}';
+    }
   }
 }

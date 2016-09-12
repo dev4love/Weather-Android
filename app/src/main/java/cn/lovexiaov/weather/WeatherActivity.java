@@ -34,7 +34,8 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
   }
 
   @Override public void showWeather(WeatherInfo weatherInfo) {
-    Logger.d(weatherInfo.toString());
+    Logger.d(weatherInfo.data.get(0).dailyForecast.toString());
+    Logger.d(weatherInfo.data.get(0).hourlyForecast.toString());
   }
 
   @Override public void showHourlyTrends() {
