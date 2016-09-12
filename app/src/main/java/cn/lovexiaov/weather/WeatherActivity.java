@@ -22,7 +22,11 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
 
     presenter = new WeatherPresenter(Injection.provideWeatherRepo());
     presenter.attachView(this);
-    Logger.d("onCreate");
+  }
+
+  @Override protected void onDestroy() {
+    super.onDestroy();
+    presenter.detachView();
   }
 
   @OnClick(R.id.btn_request_weather) public void onRequestWeather(View v) {

@@ -40,7 +40,6 @@ public class WeatherPresenter extends BasePresenter<WeatherContract.View>
           @Override public void onNext(WeatherInfo weatherInfo) {
             getView().hideLoading();
             getView().showWeather(weatherInfo);
-            Logger.d("onNext");
           }
         })
 
