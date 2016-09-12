@@ -1,5 +1,6 @@
 package cn.lovexiaov.weather.presentation.main;
 
+import cn.lovexiaov.weather.data.remote.model.WeatherInfo;
 import cn.lovexiaov.weather.presentation.base.MvpPresenter;
 import cn.lovexiaov.weather.presentation.base.MvpView;
 
@@ -7,15 +8,15 @@ import cn.lovexiaov.weather.presentation.base.MvpView;
  * Created by Administrator on 09-09 0009.
  */
 
-public class MainContract {
+public class WeatherContract {
   public interface View extends MvpView {
-    void showWeather();
+    void showWeather(WeatherInfo weatherInfo);
 
     void showHourlyTrends();
 
     void show15DayTrends();
 
-    void showError();
+    void showError(String message);
 
     void showLoading();
 
@@ -23,7 +24,7 @@ public class MainContract {
   }
 
   public interface Presenter extends MvpPresenter<View> {
-    void requestWeather();
+    void requestWeather(String city);
 
     void checkHourlyTrends();
 
