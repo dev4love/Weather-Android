@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/iv_curr"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:textSize="48sp"
         tools:text="晴转多云"
         />
@@ -35,7 +35,7 @@
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_weight="4"
+      android:layout_weight="5"
       android:orientation="vertical"
       >
     <android.support.design.widget.TabLayout

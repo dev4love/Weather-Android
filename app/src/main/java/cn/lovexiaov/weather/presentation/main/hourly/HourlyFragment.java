@@ -1,4 +1,4 @@
-package cn.lovexiaov.weather.presentation.main;
+package cn.lovexiaov.weather.presentation.main.hourly;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

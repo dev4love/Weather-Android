@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    >
+
+  <TextView
+      android:id="@+id/daily_date"
+      tools:text="2016-09-13"
+      style="@style/daily_text2"
+      />
+
+  <TextView
+      android:id="@+id/daily_condition"
+      android:layout_marginLeft="25dp"
+      android:layout_toRightOf="@id/daily_date"
+      tools:text="中雨转大到暴雨"
+      style="@style/daily_text2"
+      />
+
+  <TextView
+      android:layout_alignParentRight="true"
+      android:id="@+id/daily_temp"
+      tools:text="26°~31°"
+      style="@style/daily_text2"
+      />
+</RelativeLayout>

@@ -14,6 +14,8 @@ import butterknife.ButterKnife;
 import cn.lovexiaov.weather.R;
 import cn.lovexiaov.weather.data.Injection;
 import cn.lovexiaov.weather.model.Weather;
+import cn.lovexiaov.weather.presentation.main.daily.DailyFragment;
+import cn.lovexiaov.weather.presentation.main.hourly.HourlyFragment;
 import cn.lovexiaov.weather.presentation.utils.WeatherIcons;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.context.IconicsContextWrapper;
@@ -44,16 +46,6 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
     presenter = new WeatherPresenter(Injection.provideWeatherRepo());
     presenter.attachView(this);
     presenter.requestWeather("海淀");
-
-    List<Fragment> fragments = new ArrayList<Fragment>() {{
-      add(new HourlyFragment());
-      add(new DailyFragment());
-    }};
-
-    TabFragmentAdapter adapter =
-        new TabFragmentAdapter(getSupportFragmentManager(), fragments, tabs);
-    viewPager.setAdapter(adapter);
-    tabLayout.setupWithViewPager(viewPager);
   }
 
   @Override protected void attachBaseContext(Context newBase) {
@@ -65,11 +57,21 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
     presenter.detachView();
   }
 
-  @Override public void showWeather(Weather weather) {
+  @Override public void showWeather(final Weather weather) {
     currentIcon.setImageDrawable(
         new IconicsDrawable(this).icon(WeatherIcons.getWeatherIcon(weather.getNow().cond.code))
             .color(Color.GREEN));
     currentCondition.setText(weather.getNow().cond.txt);
+
+    List<Fragment> fragments = new ArrayList<Fragment>() {{
+      add(new HourlyFragment());
+      add(DailyFragment.newInstance(weather.getDailyForecast()));
+    }};
+
+    TabFragmentAdapter adapter =
+        new TabFragmentAdapter(getSupportFragmentManager(), fragments, tabs);
+    viewPager.setAdapter(adapter);
+    tabLayout.setupWithViewPager(viewPager);
   }
 
   @Override public void showHourlyTrends() {
