@@ -23,6 +23,7 @@ android {
 dependencies {
   compile fileTree(include: ['*.jar'], dir: 'libs')
   compile 'com.android.support:appcompat-v7:24.2.0'
+  compile 'com.android.support:design:24.2.0'
   compile 'com.orhanobut:logger:1.15'
 
   //Retrofit, RxJava and OkHttp.
@@ -34,9 +35,18 @@ dependencies {
   compile 'io.reactivex:rxandroid:1.2.1'
   compile 'io.reactivex:rxjava:1.1.6'
 
-  // Butterknife
+  //Butterknife
   compile 'com.jakewharton:butterknife:8.4.0'
   apt 'com.jakewharton:butterknife-compiler:8.4.0'
+
+  //Android-Iconics
+  compile 'com.mikepenz:iconics-core:2.8.1@aar'
+  compile 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar'
+  compile 'com.mikepenz:fontawesome-typeface:4.6.0.3@aar'
+  compile 'com.mikepenz:weather-icons-typeface:2.0.10.2@aar'
+
+  // colorize
+  compile 'com.cesarferreira.colorize:library:0.2.1'
 
   androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
     exclude group: 'com.android.support', module: 'support-annotations'

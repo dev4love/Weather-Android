@@ -5,7 +5,7 @@ import cn.lovexiaov.weather.data.remote.model.WeatherInfo;
 import rx.Observable;
 
 /**
- * Created by Administrator on 09-12 0012.
+ * Created by lovexiaov on 09-12 0012.
  */
 
 public class WeatherRepositoryImpl implements WeatherRepository {

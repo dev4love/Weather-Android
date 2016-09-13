@@ -11,6 +11,6 @@ import rx.Observable;
 
 public interface RequestService {
 
-  @GET("https://api.heweather.com/x3/weather?key=cae3f47c06634545ab1b7437f52ad85f")
+  @GET("?key=cae3f47c06634545ab1b7437f52ad85f")
   Observable<WeatherInfo> requestWeather(@Query("city") String city);
 }

@@ -1,20 +1,21 @@
 package cn.lovexiaov.weather.presentation.main;
 
-import cn.lovexiaov.weather.data.remote.model.WeatherInfo;
+import cn.lovexiaov.weather.model.Weather;
 import cn.lovexiaov.weather.presentation.base.MvpPresenter;
 import cn.lovexiaov.weather.presentation.base.MvpView;
 
 /**
- * Created by Administrator on 09-09 0009.
+ * Created by lovexiaov on 09-09 0009.
+ * Copyright reserved.
  */
 
 public class WeatherContract {
   public interface View extends MvpView {
-    void showWeather(WeatherInfo weatherInfo);
+    void showWeather(Weather weatherInfo);
 
     void showHourlyTrends();
 
-    void show15DayTrends();
+    void showFutureDayTrends();
 
     void showError(String message);
 
@@ -28,6 +29,6 @@ public class WeatherContract {
 
     void checkHourlyTrends();
 
-    void check15DayTrends();
+    void checkDailyTrends();
   }
 }
