@@ -26,6 +26,7 @@ public class WeatherPresenter extends BasePresenter<WeatherContract.View>
   @Override public void requestWeather(String city) {
     checkViewAttached();
     getView().showLoading();
+
     addSubscribtion(repository.requestWeather(city)
         .map(new Func1<WeatherInfo, Weather>() {
           @Override public Weather call(WeatherInfo weatherInfo) {
@@ -37,6 +38,7 @@ public class WeatherPresenter extends BasePresenter<WeatherContract.View>
             weather.setAlarms(dataBean.alarms);
             weather.setDailyForecast(dataBean.dailyForecast);
             weather.setHourlyForecast(dataBean.hourlyForecast);
+            weather.setStatus(dataBean.status);
 
             return weather;
           }

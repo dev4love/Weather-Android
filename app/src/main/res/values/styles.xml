@@ -15,7 +15,7 @@
     <item name="android:textSize">20sp</item>
     <item name="android:gravity">center_horizontal</item>
     <item name="android:layout_weight">3</item>
-    <item name="android:textColor">@color/c_black_olive</item>
+    <item name="android:textColor">@color/c_white_smoke</item>
   </style>
 
 </resources>

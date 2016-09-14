@@ -13,6 +13,15 @@ public class Weather {
   private List<WeatherInfo.DailyForecastBean> dailyForecast;
   private List<WeatherInfo.HourlyForecastBean> hourlyForecast;
   private WeatherInfo.NowBean now;
+  private String status;
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
 
   public WeatherInfo.NowBean getNow() {
     return now;

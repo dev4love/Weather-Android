@@ -1,41 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     >
   <RelativeLayout
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_weight="3"
+      android:background="@color/c_graph_bg_black"
       >
+    <TextView
+        android:id="@+id/tv_alarms"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+
+        />
+    <TextView
+        android:id="@+id/tv_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_alarms"
+        android:layout_centerHorizontal="true"
+        android:text="海淀区，北京市"
+        android:textColor="@color/c_white_smoke"
+        android:textSize="32sp"
+        tools:text="海淀区，北京市"
+        />
 
     <ImageView
         android:id="@+id/iv_curr"
-        android:layout_width="220dp"
-        android:layout_height="130dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/tv_city"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         tools:src="@mipmap/ic_launcher"
         />
     <TextView
         android:id="@+id/tv_curr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_curr"
+        android:layout_below="@id/iv_curr"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+        android:textColor="@color/c_white_smoke"
         android:textSize="48sp"
-        tools:text="晴转多云"
+        tools:text="晴转多云 26°"
         />
   </RelativeLayout>
 
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_weight="5"
+      android:layout_weight="3"
+      android:background="@color/c_black_olive"
       android:orientation="vertical"
       >
     <android.support.design.widget.TabLayout

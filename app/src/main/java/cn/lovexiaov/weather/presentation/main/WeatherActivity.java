@@ -1,7 +1,6 @@
 package cn.lovexiaov.weather.presentation.main;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -26,19 +25,17 @@ import java.util.List;
 
 public class WeatherActivity extends AppCompatActivity implements WeatherContract.View {
 
-  private WeatherPresenter presenter;
-
   @BindView(R.id.iv_curr) ImageView currentIcon;
   @BindView(R.id.tv_curr) TextView currentCondition;
   @BindView(R.id.tv_info) TextView info;
-
+  @BindView(R.id.tv_city) TextView city;
   @BindView(R.id.tablayout) TabLayout tabLayout;
   List<String> tabs = new ArrayList<String>() {{
     add("小时预报");
     add("未来天气");
   }};
-
   @BindView(R.id.viewpager) ViewPager viewPager;
+  private WeatherPresenter presenter;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -47,7 +44,7 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
 
     presenter = new WeatherPresenter(Injection.provideWeatherRepo());
     presenter.attachView(this);
-    presenter.requestWeather("海淀");
+    presenter.requestWeather("cangzhou");
   }
 
   @Override protected void attachBaseContext(Context newBase) {
@@ -60,10 +57,16 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
   }
 
   @Override public void showWeather(final Weather weather) {
+    if (!"ok".equalsIgnoreCase(weather.getStatus())) {
+      showError(weather.getStatus());
+      return;
+    }
     currentIcon.setImageDrawable(
         new IconicsDrawable(this).icon(WeatherIcons.getWeatherIcon(weather.getNow().cond.code))
-            .color(Color.GREEN));
+            .color(getResources().getColor(R.color.c_white_smoke)));
+
     currentCondition.setText(weather.getNow().cond.txt);
+    city.setText(String.format("%s, %s", weather.getBasic().city, weather.getBasic().cnty));
 
     initViewPager(weather);
   }
@@ -74,8 +77,7 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
       add(DailyFragment.newInstance(weather.getDailyForecast(), "未来天气"));
     }};
 
-    TabFragmentAdapter adapter =
-        new TabFragmentAdapter(getSupportFragmentManager(), fragments);
+    TabFragmentAdapter adapter = new TabFragmentAdapter(getSupportFragmentManager(), fragments);
     viewPager.setAdapter(adapter);
     tabLayout.setupWithViewPager(viewPager);
   }

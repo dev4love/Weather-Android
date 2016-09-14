@@ -41,8 +41,8 @@ dependencies {
 
   //Android-Iconics
   compile 'com.mikepenz:iconics-core:2.8.1@aar'
-  compile 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar'
-  compile 'com.mikepenz:fontawesome-typeface:4.6.0.3@aar'
+//  compile 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar'
+//  compile 'com.mikepenz:fontawesome-typeface:4.6.0.3@aar'
   compile 'com.mikepenz:weather-icons-typeface:2.0.10.2@aar'
 
   // colorize
