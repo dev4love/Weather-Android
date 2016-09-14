@@ -40,8 +40,7 @@ public class DailyFragment extends Fragment {
     RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.rv_daily);
     recyclerView.addItemDecoration(
         new RecycleViewDivider(getContext(), LinearLayoutManager.HORIZONTAL));
-    recyclerView.setLayoutManager(
-        new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
     recyclerView.setAdapter(new DailyAdapter(getContext(), dailyForecasts));
   }

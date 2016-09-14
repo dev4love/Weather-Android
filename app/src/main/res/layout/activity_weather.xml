@@ -1,68 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     >
-  <RelativeLayout
+  <include layout="@layout/weather_content"/>
+  <TextView
+      android:id="@+id/tv_info"
       android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="3"
-      >
-
-    <ImageView
-        android:id="@+id/iv_curr"
-        android:layout_width="220dp"
-        android:layout_height="130dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        tools:src="@mipmap/ic_launcher"
-        />
-    <TextView
-        android:id="@+id/tv_curr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_curr"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:textSize="48sp"
-        tools:text="晴转多云"
-        />
-  </RelativeLayout>
-
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="5"
-      android:orientation="vertical"
-      >
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tablayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginStart="20dp"
-        app:tabIndicatorColor="@color/c_aero"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="@color/c_grullo"
-        app:tabTextColor="@color/c_acidgreen"
-        >
-    </android.support.design.widget.TabLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#d6e6f1"
-        />
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
-
-  </LinearLayout>
-
-</LinearLayout>
+      android:layout_height="match_parent"
+      android:background="@color/c_white"
+      android:gravity="center"
+      android:textSize="22sp"
+      tools:text="正在加载..."
+      />
+</FrameLayout>

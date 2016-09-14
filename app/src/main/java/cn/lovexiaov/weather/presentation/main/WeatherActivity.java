@@ -7,6 +7,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
@@ -29,6 +30,7 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
 
   @BindView(R.id.iv_curr) ImageView currentIcon;
   @BindView(R.id.tv_curr) TextView currentCondition;
+  @BindView(R.id.tv_info) TextView info;
 
   @BindView(R.id.tablayout) TabLayout tabLayout;
   List<String> tabs = new ArrayList<String>() {{
@@ -63,6 +65,10 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
             .color(Color.GREEN));
     currentCondition.setText(weather.getNow().cond.txt);
 
+    initViewPager(weather);
+  }
+
+  private void initViewPager(final Weather weather) {
     List<Fragment> fragments = new ArrayList<Fragment>() {{
       add(new HourlyFragment());
       add(DailyFragment.newInstance(weather.getDailyForecast()));
@@ -83,14 +89,17 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
   }
 
   @Override public void showError(String message) {
+    info.setText(String.format("请求出错：%s", message));
+    info.setVisibility(View.VISIBLE);
     Logger.e(message);
   }
 
   @Override public void showLoading() {
-
+    info.setText("努力加载中...");
+    info.setVisibility(View.VISIBLE);
   }
 
   @Override public void hideLoading() {
-
+    info.setVisibility(View.INVISIBLE);
   }
 }
