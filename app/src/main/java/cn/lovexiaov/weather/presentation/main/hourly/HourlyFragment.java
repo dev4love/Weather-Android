@@ -2,20 +2,29 @@ package cn.lovexiaov.weather.presentation.main.hourly;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import cn.lovexiaov.weather.R;
+import cn.lovexiaov.weather.data.remote.model.WeatherInfo;
+import cn.lovexiaov.weather.presentation.base.BaseFragment;
+import java.util.List;
 
 /**
  * Created by lovexiaov on 09-13 0013.
  * Copyright reserved.
  */
 
-public class HourlyFragment extends Fragment {
-  @Override public void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+public class HourlyFragment extends BaseFragment {
+
+  private static List<WeatherInfo.HourlyForecastBean> hourlys;
+  private static String mTitle;
+
+  public static HourlyFragment newInstance(List<WeatherInfo.HourlyForecastBean> hourlyForecasts,
+      String title) {
+    hourlys = hourlyForecasts;
+    mTitle = title;
+    return new HourlyFragment();
   }
 
   @Nullable @Override
@@ -27,5 +36,9 @@ public class HourlyFragment extends Fragment {
 
   @Override public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
+  }
+
+  @Override public String getTitle() {
+    return mTitle;
   }
 }

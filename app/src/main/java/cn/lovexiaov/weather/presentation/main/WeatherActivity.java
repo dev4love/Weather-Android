@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,6 +14,7 @@ import butterknife.ButterKnife;
 import cn.lovexiaov.weather.R;
 import cn.lovexiaov.weather.data.Injection;
 import cn.lovexiaov.weather.model.Weather;
+import cn.lovexiaov.weather.presentation.base.BaseFragment;
 import cn.lovexiaov.weather.presentation.main.daily.DailyFragment;
 import cn.lovexiaov.weather.presentation.main.hourly.HourlyFragment;
 import cn.lovexiaov.weather.presentation.utils.WeatherIcons;
@@ -69,13 +69,13 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
   }
 
   private void initViewPager(final Weather weather) {
-    List<Fragment> fragments = new ArrayList<Fragment>() {{
-      add(new HourlyFragment());
-      add(DailyFragment.newInstance(weather.getDailyForecast()));
+    List<BaseFragment> fragments = new ArrayList<BaseFragment>() {{
+      add(HourlyFragment.newInstance(weather.getHourlyForecast(), "小时预报"));
+      add(DailyFragment.newInstance(weather.getDailyForecast(), "未来天气"));
     }};
 
     TabFragmentAdapter adapter =
-        new TabFragmentAdapter(getSupportFragmentManager(), fragments, tabs);
+        new TabFragmentAdapter(getSupportFragmentManager(), fragments);
     viewPager.setAdapter(adapter);
     tabLayout.setupWithViewPager(viewPager);
   }

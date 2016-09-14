@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="36dp"
+    android:padding="8dp"
+    >
+  <TextView
+      android:id="@+id/tv_time"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textSize="20sp"
+      tools:text="now"
+      />
+  <TextView
+      android:id="@+id/tv_tmp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentRight="true"
+      android:textSize="20sp"
+      tools:text="35°"
+      />
+  <ImageView
+      android:id="@+id/iv_hourly_weather"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_toLeftOf="@+id/tv_tmp"
+      android:layout_toStartOf="@+id/tv_tmp"
+      tools:src="@mipmap/ic_launcher"
+      />
+
+</RelativeLayout>

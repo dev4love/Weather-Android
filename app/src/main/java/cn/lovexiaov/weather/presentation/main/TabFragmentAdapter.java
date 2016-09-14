@@ -3,6 +3,7 @@ package cn.lovexiaov.weather.presentation.main;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import cn.lovexiaov.weather.presentation.base.BaseFragment;
 import java.util.List;
 
 /**
@@ -11,13 +12,11 @@ import java.util.List;
  */
 
 public class TabFragmentAdapter extends FragmentStatePagerAdapter {
-  List<Fragment> fragments;
-  List<String> tabs;
+  List<BaseFragment> fragments;
 
-  public TabFragmentAdapter(FragmentManager fm, List<Fragment> fragments, List<String> tabs) {
+  public TabFragmentAdapter(FragmentManager fm, List<BaseFragment> fragments) {
     super(fm);
     this.fragments = fragments;
-    this.tabs = tabs;
   }
 
   @Override public Fragment getItem(int position) {
@@ -29,6 +28,6 @@ public class TabFragmentAdapter extends FragmentStatePagerAdapter {
   }
 
   @Override public CharSequence getPageTitle(int position) {
-    return tabs.get(position);
+    return fragments.get(position).getTitle();
   }
 }

@@ -36,7 +36,9 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.ViewHolder> 
 
   @Override public void onBindViewHolder(ViewHolder holder, int position) {
     WeatherInfo.DailyForecastBean daily = dailyForecasts.get(position);
-    holder.fillViews(daily.date, daily.cond.txtD, daily.tmp.max);
+    String cond = String.format("%s~%s", daily.cond.txtD, daily.cond.txtN);
+    String tmp = String.format("%s°~%s°", daily.tmp.min, daily.tmp.max);
+    holder.fillViews(daily.date, cond, tmp);
   }
 
   @Override public int getItemCount() {

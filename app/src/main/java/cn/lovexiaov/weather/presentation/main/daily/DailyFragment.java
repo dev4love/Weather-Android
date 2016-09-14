@@ -2,7 +2,6 @@ package cn.lovexiaov.weather.presentation.main.daily;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import cn.lovexiaov.weather.R;
 import cn.lovexiaov.weather.data.remote.model.WeatherInfo;
+import cn.lovexiaov.weather.presentation.base.BaseFragment;
 import cn.lovexiaov.weather.presentation.main.RecycleViewDivider;
 import java.util.List;
 
@@ -18,12 +18,15 @@ import java.util.List;
  * Copyright reserved.
  */
 
-public class DailyFragment extends Fragment {
+public class DailyFragment extends BaseFragment {
 
   private static List<WeatherInfo.DailyForecastBean> dailyForecasts;
+  private static String mTitle;
 
-  public static DailyFragment newInstance(List<WeatherInfo.DailyForecastBean> dailyForecastList) {
+  public static DailyFragment newInstance(List<WeatherInfo.DailyForecastBean> dailyForecastList,
+      String title) {
     dailyForecasts = dailyForecastList;
+    mTitle = title;
     return new DailyFragment();
   }
 
@@ -43,5 +46,9 @@ public class DailyFragment extends Fragment {
     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
     recyclerView.setAdapter(new DailyAdapter(getContext(), dailyForecasts));
+  }
+
+  @Override public String getTitle() {
+    return mTitle;
   }
 }
