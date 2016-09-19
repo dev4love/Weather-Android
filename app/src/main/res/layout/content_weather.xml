@@ -12,19 +12,40 @@
       android:layout_weight="3"
       android:background="@color/c_graph_bg_black"
       >
-    <TextView
+    <LinearLayout
         android:id="@+id/tv_alarms"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-
-        />
+        android:background="@color/c_blue_gray"
+        android:orientation="horizontal"
+        >
+      <TextView
+          android:id="@+id/alarm_icon"
+          android:layout_width="32dp"
+          android:layout_height="32dp"
+          android:layout_gravity="center"
+          android:gravity="center"
+          android:text="{faw-bell}"
+          android:textColor="@color/c_red"
+          android:textSize="22sp"
+          />
+      <com.xiaosu.VerticalRollingTextView
+          android:id="@+id/rolling_info"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_marginLeft="10dp"
+          android:gravity="center"
+          android:textColor="@color/c_yellow"
+          android:textSize="20sp"
+          tools:text="今天夜间到白天有短时雷雨大风，风力 14 级以上。请注意看护自家的房顶！"
+          />
+    </LinearLayout>
     <TextView
         android:id="@+id/tv_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_alarms"
         android:layout_centerHorizontal="true"
-        android:text="海淀区，北京市"
         android:textColor="@color/c_white_smoke"
         android:textSize="32sp"
         tools:text="海淀区，北京市"
@@ -78,7 +99,7 @@
         android:layout_height="2dp"
         android:background="#d6e6f1"
         />
-    <android.support.v4.view.ViewPager
+    <cn.lovexiaov.weather.presentation.DecoratorViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

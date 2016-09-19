@@ -41,12 +41,14 @@ dependencies {
 
   //Android-Iconics
   compile 'com.mikepenz:iconics-core:2.8.1@aar'
-//  compile 'com.mikepenz:google-material-typeface:2.2.0.3.original@aar'
-//  compile 'com.mikepenz:fontawesome-typeface:4.6.0.3@aar'
   compile 'com.mikepenz:weather-icons-typeface:2.0.10.2@aar'
+  compile 'com.mikepenz:fontawesome-typeface:4.6.0.3@aar'
 
   // colorize
   compile 'com.cesarferreira.colorize:library:0.2.1'
+
+  //VertcalRollingTextView
+  compile 'com.xiaosu:VerticalRollingTextView:1.2.0'
 
   androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
     exclude group: 'com.android.support', module: 'support-annotations'

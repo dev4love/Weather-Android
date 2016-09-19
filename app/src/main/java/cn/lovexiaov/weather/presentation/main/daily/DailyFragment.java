@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cn.lovexiaov.weather.R;
 import cn.lovexiaov.weather.data.remote.model.WeatherInfo;
 import cn.lovexiaov.weather.presentation.base.BaseFragment;
@@ -19,6 +21,8 @@ import java.util.List;
  */
 
 public class DailyFragment extends BaseFragment {
+
+  //@BindView(R.id.rv_daily)RecyclerView recyclerView;
 
   private static List<WeatherInfo.DailyForecastBean> dailyForecasts;
   private static String mTitle;
@@ -34,12 +38,13 @@ public class DailyFragment extends BaseFragment {
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_daily, container, false);
+    //ButterKnife.bind(this, view);
     return view;
   }
 
   @Override public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
-    //ButterKnife.bind(getActivity());
+
     RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.rv_daily);
     recyclerView.addItemDecoration(
         new RecycleViewDivider(getContext(), LinearLayoutManager.HORIZONTAL));
