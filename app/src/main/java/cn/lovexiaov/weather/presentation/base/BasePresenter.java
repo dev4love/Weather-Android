@@ -4,16 +4,16 @@ import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
 /**
- * Created by Administrator on 09-12 0012.
+ * Created by lovexiaov on 09-12 0012.
  */
 
-public class BasePresenter<T extends MvpView> implements MvpPresenter<T> {
+public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
-  private T view;
+  private V view;
 
   private CompositeSubscription compositeSubscription = new CompositeSubscription();
 
-  @Override public void attachView(T view) {
+  @Override public void attachView(V view) {
     this.view = view;
   }
 
@@ -22,7 +22,7 @@ public class BasePresenter<T extends MvpView> implements MvpPresenter<T> {
     view = null;
   }
 
-  public T getView() {
+  public V getView() {
     return view;
   }
 

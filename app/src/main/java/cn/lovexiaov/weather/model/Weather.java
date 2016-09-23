@@ -4,7 +4,7 @@ import cn.lovexiaov.weather.data.remote.model.WeatherInfo;
 import java.util.List;
 
 /**
- * Created by Administrator on 09-12 0012.
+ * Created by lovexiaov on 09-12 0012.
  */
 
 public class Weather {

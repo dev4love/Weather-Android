@@ -22,7 +22,7 @@ import java.util.List;
 
 public class DailyFragment extends BaseFragment {
 
-  //@BindView(R.id.rv_daily)RecyclerView recyclerView;
+  @BindView(R.id.rv_daily)RecyclerView recyclerView;
 
   private static List<WeatherInfo.DailyForecastBean> dailyForecasts;
   private static String mTitle;
@@ -38,14 +38,17 @@ public class DailyFragment extends BaseFragment {
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_daily, container, false);
-    //ButterKnife.bind(this, view);
+    ButterKnife.bind(this, view);
     return view;
   }
 
   @Override public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
+    initRecyclerView();
+  }
 
-    RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.rv_daily);
+  private void initRecyclerView() {
+    //RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.rv_daily);
     recyclerView.addItemDecoration(
         new RecycleViewDivider(getContext(), LinearLayoutManager.HORIZONTAL));
     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

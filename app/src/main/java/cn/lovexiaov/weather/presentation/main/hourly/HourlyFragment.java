@@ -13,7 +13,6 @@ import cn.lovexiaov.weather.R;
 import cn.lovexiaov.weather.data.remote.model.WeatherInfo;
 import cn.lovexiaov.weather.presentation.base.BaseFragment;
 import cn.lovexiaov.weather.presentation.main.RecycleViewDivider;
-import cn.lovexiaov.weather.presentation.main.daily.DailyAdapter;
 import java.util.List;
 
 /**
@@ -45,6 +44,10 @@ public class HourlyFragment extends BaseFragment {
 
   @Override public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
+    initRecyclerView();
+  }
+
+  private void initRecyclerView() {
     //RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.rv_hourly);
     recyclerView.addItemDecoration(
         new RecycleViewDivider(getContext(), LinearLayoutManager.HORIZONTAL));

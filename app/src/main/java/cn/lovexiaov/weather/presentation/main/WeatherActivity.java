@@ -3,11 +3,14 @@ package cn.lovexiaov.weather.presentation.main;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,16 +36,17 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
   @BindView(R.id.rolling_info) VerticalRollingTextView rollingInfo;
   List<String> infos = new ArrayList<String>() {{
     add("今天夜间到白天有短时雷雨大风，风力 14 级以上。请注意看护自家的房顶！");
+    add("前方高能预警，雷神发怒，电母发疯！");
   }};
   @BindView(R.id.iv_curr) ImageView currentIcon;
   @BindView(R.id.tv_curr) TextView currentCondition;
   @BindView(R.id.tv_info) TextView info;
   @BindView(R.id.tv_city) TextView city;
   @BindView(R.id.tablayout) TabLayout tabLayout;
-  List<String> tabs = new ArrayList<String>() {{
-    add("小时预报");
-    add("未来天气");
-  }};
+
+  @BindView(R.id.drawer) DrawerLayout drawerLayout;
+  @BindView(R.id.drawer_list) ListView drawerList;
+
   @BindView(R.id.viewpager) DecoratorViewPager viewPager;
   private WeatherPresenter presenter;
 
@@ -51,6 +55,7 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
     setContentView(R.layout.activity_weather);
     ButterKnife.bind(this);
 
+    initDrawerLayout();
     rollingInfo.setDataSetAdapter(new DataSetAdapter<String>(infos) {
       @Override protected String text(String s) {
         return s;
@@ -64,6 +69,17 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
     presenter.requestWeather("北京");
   }
 
+  private void initDrawerLayout() {
+    String[] items = getResources().getStringArray(R.array.menus);
+    drawerList.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items));
+    drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      @Override public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        drawerLayout.closeDrawer(drawerList);
+      }
+    });
+  }
+
+  // for use Android Iconics
   @Override protected void attachBaseContext(Context newBase) {
     super.attachBaseContext(IconicsContextWrapper.wrap(newBase));
   }
@@ -79,10 +95,9 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
       return;
     }
     currentIcon.setImageDrawable(
-        new IconicsDrawable(this)
-            .icon(WeatherIcons.getWeatherIcon(weather.getNow().cond.code))
+        new IconicsDrawable(this).icon(WeatherIcons.getWeatherIcon(weather.getNow().cond.code))
             .colorRes(R.color.c_white_smoke));
-            //.color(getResources().getColor(R.color.c_white_smoke)));
+    //.color(getResources().getColor(R.color.c_white_smoke)));
 
     currentCondition.setText(weather.getNow().cond.txt);
     city.setText(String.format("%s, %s", weather.getBasic().city, weather.getBasic().cnty));
@@ -95,7 +110,6 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
       add(HourlyFragment.newInstance(weather.getHourlyForecast(), "小时预报"));
       add(DailyFragment.newInstance(weather.getDailyForecast(), "未来天气"));
     }};
-
 
     viewPager.setNestedpParent((ViewGroup) viewPager.getParent());
     TabFragmentAdapter adapter = new TabFragmentAdapter(getSupportFragmentManager(), fragments);

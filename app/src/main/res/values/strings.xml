@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Weather</string>
+  <string name="app_name">Weather</string>
+  <string-array name="menus">
+    <item>Search</item>
+    <item>Setting</item>
+    <item>About</item>
+  </string-array>
 </resources>
